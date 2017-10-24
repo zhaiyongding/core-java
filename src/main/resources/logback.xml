@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true" scanPeriod="60 seconds">
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <encoder>
+            <pattern><![CDATA[
+				%-20(%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] ) %-5level %logger{80}[%L] - %msg%n
+          ]]></pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="AppenderError" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.root.path}/wy-promotion-error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${log.root.path}/wy-promotion-error.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <append>true</append>
+        <encoder>
+            <pattern><![CDATA[
+                        %-20(%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] ) %-5level %logger{80} - %msg%n
+                  ]]></pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+    <appender name="AppenderInfo" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.root.path}/wy-promotion-info.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${log.root.path}/wy-promotion-info.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <append>true</append>
+        <encoder>
+            <pattern><![CDATA[
+                        %-20(%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] ) %-5level %logger{80} - %msg%n
+                  ]]></pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+    <appender name="AppenderDebug" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.root.path}/wy-promotion-debug.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${log.root.path}/wy-promotion-debug.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <append>true</append>
+        <encoder>
+            <pattern><![CDATA[
+                        %-20(%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] ) %-5level %logger{80} - %msg%n
+                  ]]></pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <logger name="org.springframework" level="info"/>
+    <logger name="org.springframework.web.context.support.XmlWebApplicationContext" level="debug"/>
+    <logger name="org.apache" level="info"/>
+    <logger name="org.mongodb" level="info"/>
+    <logger name="net.sf" level="info"/>
+    <logger name="org.hibernate" level="info"/>
+    <logger name="com.aliyun" level="info"/>
+    <logger name="org.quartz" level="info"/>
+    <logger name="com.alibaba.dubbo" level="error"/>
+
+    <root value="test">
+        <appender-ref ref="AppenderError"/>
+        <appender-ref ref="AppenderInfo"/>
+        <if condition="true">
+            <then>
+                <appender-ref ref="STDOUT"/>
+            </then>
+        </if>
+        <!--<if condition='${log.level}.equals("info")'>-->
+            <!--<then>-->
+                <!--<appender-ref ref="STDOUT"/>-->
+            <!--</then>-->
+        <!--</if>-->
+    </root>
+</configuration>

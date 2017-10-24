@@ -1,9 +1,9 @@
-package com.wy.promation;
+package com.wy.thread;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class SynchronizedTest {
+public class SynchronizedLockTest {
     private Integer lock=0;
     private Integer lock2=0;
     public void method1(){
@@ -33,7 +33,7 @@ public class SynchronizedTest {
     }
 
     public static void main(String[] args) {
-        final SynchronizedTest test = new SynchronizedTest();
+        final SynchronizedLockTest test = new SynchronizedLockTest();
 
         new Thread(new Runnable() {
             @Override

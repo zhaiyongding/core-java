@@ -1,4 +1,4 @@
-package com.wy.other;
+package com.wy.thread;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.math.RandomUtils;
@@ -10,7 +10,7 @@ import java.util.concurrent.*;
  * Created by wy-zyd on 17-9-6.
  */
 @Slf4j
-public class TestNum {
+public class ThreadLocalTest {
 
     public ThreadPoolExecutor getThreadPoolExecutor() {
         // 默认线程数，默认为Integer.1
